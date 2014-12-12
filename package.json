@@ -1,0 +1,50 @@
+{
+  "name": "ampersand-date-view",
+  "description": "A view module for user date input.",
+  "version": "0.0.2",
+  "author": {
+    "name": "Mike Hedman",
+    "email": "mikehedman@gmail.com"
+  },
+  "browserify": {
+    "transform": [
+      "ampersand-version"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/mikehedman/ampersand-date-view/issues"
+  },
+  "dependencies": {
+    "ampersand-version": "^1.0.1",
+    "ampersand-view": "^7.0.0",
+    "ampersand-input-view": "^3.1.0",
+    "ampersand-select-view": "^2.2.1",
+    "underscore": "^1.6.0"
+  },
+  "devDependencies": {
+    "browserify": "^5.10.1",
+    "function-bind": "^1.0.0",
+    "jshint": "^2.5.6",
+    "phantomjs": "^1.9.7-15",
+    "precommit-hook": "^1.0.7",
+    "run-browser": "^1.3.1",
+    "tap-spec": "^0.2.1",
+    "tape": "^2.14.0",
+    "tape-run": "^0.3.0"
+  },
+  "homepage": "https://github.com/ampersandjs/ampersand-input-view",
+  "keywords": [
+    "forms",
+    "ampersand",
+    "browser"
+  ],
+  "license": "MIT",
+  "main": "ampersand-date-view.js",
+  "scripts": {
+    "start": "run-browser test/index.js",
+    "test": "browserify test/index.js | tape-run | tap-spec",
+    "dtest": "node-debug ./node_modules/.bin/browserify test/index.js | ./node_modules/.bin/tape-run | ./node_modules/.bin/tap-spec"
+  },
+  "directories": {},
+  "readme": "ERROR: No README data found!"
+}
