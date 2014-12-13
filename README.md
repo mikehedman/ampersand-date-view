@@ -2,12 +2,9 @@
 An extension of [ampersand-input-view](https://github.com/AmpersandJS/ampersand-input-view) to create a three part date control.
 
 ## install
-won't work until I get this into npm!
 ```
 npm install ampersand-date-view
 ```
-until then, you can add the following line directly into the dependencies section of your package.json:
-"ampersand-date-view": "git://github.com/mikehedman/ampersand-date-view",
 
 ## example
 
