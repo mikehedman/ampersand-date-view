@@ -1,4 +1,5 @@
-# ampersand-date-view
+# ampersand-date-view    ![Build Status](https://api.travis-ci.org/mikehedman/ampersand-date-view.svg?branch=master)
+
 An extension of [ampersand-input-view](https://github.com/AmpersandJS/ampersand-input-view) to create a three part date control.
 
 ## install
