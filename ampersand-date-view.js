@@ -114,7 +114,7 @@ module.exports = View.extend({
             requiredMessage: 'Year is required.',
             tests: [
                 function (val) {
-                    if (val < 1900 || val > 2000) return "Invalid year";
+                    if (val < 1900 || val > 2100) return "Invalid year";
                 },
                 function (val) {
                     if (!/^[0-9]+$/.test(val)) return "Year must be a number.";
