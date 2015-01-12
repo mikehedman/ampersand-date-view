@@ -33,7 +33,7 @@ module.exports = FormView.extend({
 Same as ampersand-input-view
 
 ## changelog
-
+0.0.7 - removing hardcoded limitation on year
 
 ## credits
 
