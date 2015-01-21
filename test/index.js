@@ -6,9 +6,9 @@ function isHidden(el) {
     return el.style.display === 'none';
 }
 
-function hasClass(el, klass) {
-    return el.classList.contains(klass);
-}
+// function hasClass(el, klass) {
+//     return el.classList.contains(klass);
+// }
 
 function getSelectText(parent) {
     var sel = parent.querySelector('[data-hook=month] select');
@@ -67,5 +67,25 @@ test('value change', function (t) {
     control.handleInputChanged();
 
     t.equal(control.value.getDate(), 15);
+    t.end();
+});
+
+test('invalid year value change', function (t) {
+    var original = new Date('2000-10-12T08:00:00.000Z');
+    var control = new DateView({
+        name: 'title',
+        value: original,
+        yearMax: 2000
+    });
+
+    control.render();
+
+    var errorMessage = control.el.querySelector('[data-hook=message-container]');
+    t.ok(isHidden(errorMessage), 'error should be hidden to start');
+    control.yearView.setValue('2014', false);
+    control.handleInputChanged();
+    control.beforeSubmit();
+    t.equal(control.value.getFullYear(), 2014);
+    t.ok(!isHidden(errorMessage), 'error should be visible now');
     t.end();
 });

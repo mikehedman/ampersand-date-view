@@ -73,6 +73,8 @@ module.exports = View.extend({
     },
 
     render: function () {
+        var self = this;
+
         //call the parent first
         View.prototype.render.apply(this);
         this.input = this.query('input');
@@ -96,10 +98,10 @@ module.exports = View.extend({
             requiredMessage: 'Day is required.',
             tests: [
                 function (val) {
-                    if (val < 1 || val > 31) return "Invalid day.";
+                    if (val < 1 || val > 31) return 'Invalid day.';
                 },
                 function (val) {
-                    if (!/^[0-9]+$/.test(val)) return "Day must be a number.";
+                    if (!/^[0-9]+$/.test(val)) return 'Day must be a number.';
                 }
             ]
         }), '[data-hook=day]');
@@ -114,7 +116,10 @@ module.exports = View.extend({
             requiredMessage: 'Year is required.',
             tests: [
                 function (val) {
-                    if (!/^[0-9]+$/.test(val)) return "Year must be a number.";
+                    if (val < self.yearMin || val > self.yearMax) return 'Year must be between '+self.yearMin+' and '+self.yearMax+'.';
+                },
+                function (val) {
+                    if (!/^[0-9]+$/.test(val)) return 'Year must be a number.';
                 }
             ]
         }), '[data-hook=year]');
@@ -130,6 +135,8 @@ module.exports = View.extend({
         name: 'string',
         dayPlaceholder: ['string', true, ''],
         yearPlaceholder: ['string', true, ''],
+        yearMax: ['number', true, 2100],
+        yearMin: ['number', true, 1900],
         label: ['string', true, ''],
         required: ['boolean', true, true],
         shouldValidate: ['boolean', true, true],
@@ -210,14 +217,14 @@ module.exports = View.extend({
     },
 
     handleInputChanged: function () {
-        if (this.monthSelect.value == '' || this.dayInput.value == '' || this.yearInput.value == '') {
+        if (this.monthSelect.value === '' || this.dayInput.value === '' || this.yearInput.value === '') {
             this.inputValue = null;
         } else {
             this.inputValue = new Date(parseInt(this.yearInput.value), parseInt(this.monthSelect.value), parseInt(this.dayInput.value));
         }
     },
 
-    clean: function (val) {
+    clean: function () {
         return this.inputValue;
     },
 
