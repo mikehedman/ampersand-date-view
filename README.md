@@ -19,7 +19,8 @@ module.exports = FormView.extend({
             new DateView({
               label: 'Birth date',
               value: this.model.birthDate || '',
-              name: 'birthDate'
+              name: 'birthDate',
+              yearMax: 2000
             }),
             ...
         ];
@@ -30,10 +31,14 @@ module.exports = FormView.extend({
 
 #### opts
 
-Same as ampersand-input-view
+- yearMin   (defaults to 1900)
+- yearMax   (defaults to 2100)
+
+And all the standard options from ampersand-input-view
 
 ## changelog
 0.0.7 - removing hardcoded limitation on year
+0.0.8 - Changes provided by @xicombd from @sinfo: added yearMin, yearMax constraints, demo, and lint cleanup 
 
 ## credits
 

@@ -6,10 +6,6 @@ function isHidden(el) {
     return el.style.display === 'none';
 }
 
-// function hasClass(el, klass) {
-//     return el.classList.contains(klass);
-// }
-
 function getSelectText(parent) {
     var sel = parent.querySelector('[data-hook=month] select');
     return sel.options[sel.selectedIndex].innerHTML;

@@ -1,7 +1,7 @@
 {
   "name": "ampersand-date-view",
   "description": "A view module for user date input.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": {
     "name": "Mike Hedman",
     "email": "mikehedman@gmail.com"
