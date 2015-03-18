@@ -222,6 +222,7 @@ module.exports = View.extend({
         } else {
             this.inputValue = new Date(parseInt(this.yearInput.value), parseInt(this.monthSelect.value), parseInt(this.dayInput.value));
         }
+        this.updateMessage();
     },
 
     clean: function () {
@@ -229,6 +230,13 @@ module.exports = View.extend({
     },
 
     handleBlur: function (event) {
+        if (event.target === this.monthSelect) {
+            this.monthView.validate();
+        }
+        this.updateMessage();
+    },
+
+    updateMessage: function() {
         var message = '';
         if (event.target === this.monthSelect) {
             this.monthView.validate();
@@ -260,7 +268,8 @@ module.exports = View.extend({
         this.monthSelect.addEventListener('blur', this.handleBlur.bind(this), false);
         this.dayInput.addEventListener('blur', this.handleBlur.bind(this), false);
         this.yearInput.addEventListener('blur', this.handleBlur.bind(this), false);
-        this.monthSelect.addEventListener('input', this.handleInputChanged, false);
+        //listening to change instead of input due to timing issue
+        this.monthSelect.addEventListener('change',this.handleInputChanged, false);
         this.dayInput.addEventListener('input', this.handleInputChanged, false);
         this.yearInput.addEventListener('input', this.handleInputChanged, false);
     },
@@ -269,7 +278,7 @@ module.exports = View.extend({
         this.monthSelect.removeEventListener('blur', this.handleBlur, false);
         this.dayInput.removeEventListener('blur', this.handleBlur, false);
         this.yearInput.removeEventListener('blur', this.handleBlur, false);
-        this.monthSelect.removeEventListener('input', this.handleInputChanged, false);
+        this.monthSelect.removeEventListener('change', this.handleInputChanged, false);
         this.dayInput.removeEventListener('input', this.handleInputChanged, false);
         this.yearInput.removeEventListener('input', this.handleInputChanged, false);
         View.prototype.remove.apply(this, arguments);

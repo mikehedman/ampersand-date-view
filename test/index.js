@@ -85,3 +85,28 @@ test('invalid year value change', function (t) {
     t.ok(!isHidden(errorMessage), 'error should be visible now');
     t.end();
 });
+
+test('month change event', function (t) {
+    var control = new DateView({
+        name: 'title'
+    });
+
+    control.render();
+    var errorMessage = control.el.querySelector('[data-hook=message-container]');
+
+    //start with month not filled in
+    control.dayView.setValue('14', false);
+    control.yearView.setValue('1980', false);
+    control.handleInputChanged();
+    control.beforeSubmit();
+    t.equal(control.message.trim(), 'Month must be set.');
+    t.ok(!isHidden(errorMessage), 'error should be visible');
+
+    //fill it in, message should go away
+    control.monthView.setValue('3');
+    control.handleInputChanged();
+    control.beforeSubmit();
+    t.ok(isHidden(errorMessage), 'error no longer shown');
+
+    t.end();
+});
